@@ -1,7 +1,8 @@
 using TestImages
 using Noise
-using FileIO
+# using FileIO
 using NCPCA
+using View5D
 
 function main()
     obj = 1 .* Float32.(testimage("resolution_test_512"))
