@@ -142,20 +142,23 @@ function nc_pca(mydata, max_dims=4, my_norm=norm_poisson, threshold=0, do_displa
 end
 
 """
+    phasorplot(mydata, T=nothing, threshold=0, doselect=false, offsetphase=0)
+
 This function calculates phasor coordinates of image and displays phasor plot
-INPUT ARGUMENTS
-mydata = a noisy FLIM image (default = HeLa cell image, figure 4 from publication)
-T = the sampling period (e.g 50 ns)
-threshold = minimum intensity in peak of decay (default = 0)
-doselect = select ROI from image before phasor analysis (default = 0)
-offsetphase = compensate for wide IRF by starting projection at later bins  (default = 0)
-after peak - indicate number of bins
+
+# INPUT ARGUMENTS
++ mydata = a noisy FLIM image (default = HeLa cell image, figure 4 from publication)
++ T = the sampling period (e.g 50 ns)
++ threshold = minimum intensity in peak of decay (default = 0)
++ doselect = select ROI from image before phasor analysis (default = 0)
++ offsetphase = compensate for wide IRF by starting projection at later bins  (default = 0)
++ after peak - indicate number of bins
  
- OUTPUT ARGUMENTS
- myhist = histogram of phasor coordinates in phasor space
- [realPart,imagPart] = images with real and imaginary phasor coordinates
- mask_phasor = mask of selected pixels after threshold 
- ROI = mask of selected pixels after ROI selection
+# OUTPUT ARGUMENTS
++ myhist = histogram of phasor coordinates in phasor space
++ [realPart,imagPart] = images with real and imaginary phasor coordinates
++ mask_phasor = mask of selected pixels after threshold 
++ ROI = mask of selected pixels after ROI selection
 
 Please refer to and cite where appropriate: "Noise-corrected principal
 component analysis of fluorescence lifetime imaging (FLIM) data" (2016)
