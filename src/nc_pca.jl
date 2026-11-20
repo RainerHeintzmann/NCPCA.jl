@@ -142,7 +142,7 @@ function nc_pca(mydata, max_dims=4, my_norm=norm_poisson, threshold=0, do_displa
 end
 
 """
-    phasorplot(mydata, T=nothing, threshold=0, doselect=false, offsetphase=0)
+    phasorplot(mydata, T=nothing, threshold=0, doselect=false, offsetphase=0 ; num_bins=nothing, verbose=false)
 
 This function calculates phasor coordinates of image and displays phasor plot
 
@@ -152,8 +152,9 @@ This function calculates phasor coordinates of image and displays phasor plot
 + threshold = minimum intensity in peak of decay (default = 0)
 + doselect = select ROI from image before phasor analysis (default = 0)
 + offsetphase = compensate for wide IRF by starting projection at later bins  (default = 0)
-+ after peak - indicate number of bins
- 
++ num_bins = number of bins to consider after the peak (default = nothing)
++ verbose = whether to display additional information (default = false)
+
 # OUTPUT ARGUMENTS
 + myhist = histogram of phasor coordinates in phasor space
 + [realPart,imagPart] = images with real and imaginary phasor coordinates
