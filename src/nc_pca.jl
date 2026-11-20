@@ -165,7 +165,7 @@ component analysis of fluorescence lifetime imaging (FLIM) data" (2016)
 by Alix Le Marois, Simon Labouesse, Klaus Suhling, and Rainer Heintzmann
 
 """
-function phasorplot(mydata, T=nothing, threshold=0, doselect=false, offsetphase=0)
+function phasorplot(mydata, T=nothing, threshold=0, doselect=false, offsetphase=0; num_bins=nothing, verbose=false)
             
     if ndims(mydata)==3;
         nbtimebins=size(mydata,3);
@@ -210,12 +210,27 @@ function phasorplot(mydata, T=nothing, threshold=0, doselect=false, offsetphase=
     Mbgc = mydata .- bg;
     
     # determine end of decay
-    @show end_ind = findlast(projMS .> bg)[3]
+    if isnothing(num_bins)
+        end_ind = findlast(projMS .> bg)[3]
+    else
+        end_ind = min(peak_ind + num_bins - 1, nbtimebins)
+    end
+
+    if (verbose)
+        @show peak_ind
+        @show end_ind
+        @show (end_ind - peak_ind)
+    end
     
     # set frequency to decay size and phase to decay peak
     myramp = range(0,T,nbtimebins)
     omega = 2pi / ((end_ind - peak_ind + 1)*T/nbtimebins)
     phase = omega*(peak_ind+offsetphase)*T/nbtimebins
+
+    if (verbose)
+        @show omega
+        @show phase
+    end
     
     # cos and sin matrices
     # easy way, but has troubles with sampling issues
